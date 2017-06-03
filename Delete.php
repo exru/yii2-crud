@@ -22,7 +22,6 @@
 namespace exru\crud;
 
 use Yii;
-use yii;
 
 class Delete extends CrudAction {
 
