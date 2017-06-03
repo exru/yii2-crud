@@ -1,7 +1,7 @@
 Yii2 simple CRUD
 ================
 
-####### ENG
+###### ENG
 
 #### What is it for:
 - Replace the standard CRUD generator, with more advanced functionality.
@@ -38,7 +38,7 @@ Where ID is the identifier of the newly saved model (or old one).
 - Refactoring is needed, because Works in the production of many projects
 - Auto-test coverage
 
-####### RUS
+###### RUS
 
 #### Для чего это надо:
 - Заменить стандартный генератор CRUD, более продвинутым функционалом.
