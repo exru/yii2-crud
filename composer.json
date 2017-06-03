@@ -12,5 +12,10 @@
             "email": "exerus0@gmail.com"
         }
     ],
-    "minimum-stability": "beta"
+    "minimum-stability": "beta",
+    "autoload": {
+        "psr-4": {
+            "exru\\crud\\": ""
+        }
+    }
 }
