@@ -3,7 +3,7 @@
     "description": "Simple CRUD for yii2",
     "type": "library",
     "require": {
-        "yiisoft/yii2": "2.0.7"
+        "yiisoft/yii2": ">=2.0.7"
     },
     "license": "GPL-3.0",
     "authors": [
