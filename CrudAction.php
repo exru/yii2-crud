@@ -21,7 +21,6 @@
 
 namespace exru\crud;
 
-use yii;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
