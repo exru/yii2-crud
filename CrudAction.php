@@ -295,6 +295,13 @@ abstract class CrudAction extends \yii\base\Action {
     public $disableFlash = false;
     
     /**
+     * Disable getData for accelerate
+     * Отключить поиск данных 
+     * @var boolean 
+     */
+    public $disableData = false;
+    
+    /**
      * URL ID parametr
      * Параметр из URL для ID модели
      * @var type 
@@ -439,7 +446,11 @@ abstract class CrudAction extends \yii\base\Action {
      * @return ActiveDataProvider
      */
     public function getData() {
-
+        
+        if($this->disableData){
+            return;
+        }
+        
         $model = $this->getModel();
         
         if (method_exists($model, 'search')) { //custom search            
@@ -463,8 +474,7 @@ abstract class CrudAction extends \yii\base\Action {
                 'sort'=>isset($this->sort)?$this->sort:(new \yii\data\Sort()),
             ]);
         }
-        
-        
+         
         return $data;
     }
 
@@ -494,7 +504,9 @@ abstract class CrudAction extends \yii\base\Action {
         if(is_null($this->view)){
             $this->view = $this->id;
         }
-        return $this->controller->render($this->view, $this->params);
+        if($this->view){
+            return $this->controller->render($this->view, $this->params);
+        }
     }
 
     public function riseException($key, $params = null) {

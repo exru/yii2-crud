@@ -30,12 +30,11 @@ class Edit extends CrudAction{
 
     const STATUS_ERROR = 0;
     const STATUS_SUCCESS = 1;
+    
+    public $disableData = true;
             
     public function process() {
         $model = $this->getModel();
-        if (isset($this->attr)) {
-            $model->load($this->attr);
-        }
         if(Yii::$app->request->getQueryParam('_pjax')){
             return $this->render();
         }        
@@ -69,13 +68,4 @@ class Edit extends CrudAction{
             return ActiveForm::validate($model);
         }
     }
-
-    public function render() {
-        if(is_null($this->view)){
-            $this->view = $this->id;
-        }
-        $this->params = ArrayHelper::merge($this->params, [$this->delegationModelName => $this->getModel()]);
-        return $this->controller->render($this->view, $this->params);
-    }
-
 }
