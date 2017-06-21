@@ -3,7 +3,8 @@
     "description": "Simple CRUD for yii2",
     "type": "library",
     "require": {
-        "yiisoft/yii2": ">=2.0.7"
+        "yiisoft/yii2": ">=2.0.7",
+        "exru/yii2-crud": "dev-master"
     },
     "license": "GPL-3.0",
     "authors": [
