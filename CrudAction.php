@@ -21,13 +21,22 @@
 
 namespace exru\crud;
 
+use Exception;
 use Yii;
+use yii\base\Action;
+use yii\base\Object;
 use yii\data\ActiveDataProvider;
+use yii\data\Sort;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\helpers\Url;
+use yii\helpers\VarDumper;
+use yii\web\ForbiddenHttpException;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use yii\widgets\ActiveForm;
 
-abstract class CrudAction extends \yii\base\Action {
+abstract class CrudAction extends Action {
 
     /**
      * Model
@@ -413,7 +422,7 @@ abstract class CrudAction extends \yii\base\Action {
             try{
                 $this->_model = $query->one();
             }
-            catch (\Exception $e){
+            catch (Exception $e){
                $this->riseException('find');
             }
         }else{
@@ -471,7 +480,7 @@ abstract class CrudAction extends \yii\base\Action {
             $data = new ActiveDataProvider([
                 'query' => $query,
                 'pagination'=>$this->pagination,
-                'sort'=>isset($this->sort)?$this->sort:(new \yii\data\Sort()),
+                'sort'=>isset($this->sort)?$this->sort:(new Sort()),
             ]);
         }
          
@@ -511,10 +520,10 @@ abstract class CrudAction extends \yii\base\Action {
 
     public function riseException($key, $params = null) {
         if($key == 'find'){
-            throw new yii\web\NotFoundHttpException($this->findMessage, 404);
+            throw new NotFoundHttpException($this->findMessage, 404);
         }
         if($key == 'forbidden'){
-            throw new \yii\web\ForbiddenHttpException($this->forbiddenMessage, 403);
+            throw new ForbiddenHttpException($this->forbiddenMessage, 403);
         }
         $this->controller->redirect($this->routeTo([], true));       
         Yii::$app->end();
@@ -533,11 +542,11 @@ abstract class CrudAction extends \yii\base\Action {
             if(!$model->load(Yii::$app->request->post())){
                 $model->attributes = Yii::$app->request->post();
             }
-            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            Yii::$app->response->format = Response::FORMAT_JSON;
             if(!$model->hasErrors() && $this->silentMode){
                 return;
             }
-            echo \yii\helpers\Json::encode(ActiveForm::validate($model));
+            echo Json::encode(ActiveForm::validate($model));
             Yii::$app->end();
         }
     }
@@ -623,7 +632,7 @@ abstract class CrudAction extends \yii\base\Action {
             Yii::warning(print_r($data, true), ' debug CRUD loadAndValidate method');
             return;
         }
-        \yii\helpers\VarDumper::dump($data, 10, true); exit;
+        VarDumper::dump($data, 10, true); exit;
     }
 
 }
