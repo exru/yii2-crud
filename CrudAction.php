@@ -313,10 +313,16 @@ abstract class CrudAction extends Action {
     /**
      * URL ID parametr
      * Параметр из URL для ID модели
-     * @var type 
+     * @var string 
      */
     public $queryParam = 'id';
     
+    /**
+     * Data filter 
+     * Фильтровать данные 
+     * @var string 
+     */
+    public $dataFilter = true;
 
     abstract public function process();
 
@@ -475,8 +481,9 @@ abstract class CrudAction extends Action {
             
             $this->setOrderParams($query);
             
-            $query->andFilterWhere($model->attributes);
-
+            if($this->dataFilter){
+                $query->andFilterWhere($model->attributes);
+            }
             $data = new ActiveDataProvider([
                 'query' => $query,
                 'pagination'=>$this->pagination,
