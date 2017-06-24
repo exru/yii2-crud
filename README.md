@@ -1,8 +1,6 @@
 Yii2 simple CRUD
 ================
 
-###### ENG
-
 #### What is it for:
 - Replace the standard CRUD generator, with more advanced functionality.
 - Rather, it's not a Create-Read-Update-Delete extension, but a simpler for the Edit-Delete analog
@@ -38,43 +36,6 @@ Where ID is the identifier of the newly saved model (or old one).
 - Refactoring is needed, because Works in the production of many projects
 - Auto-test coverage
 
-###### RUS
-
-#### Для чего это надо:
-- Заменить стандартный генератор CRUD, более продвинутым функционалом.
-- Скорее, это не Create-Read-Update-Delete расширение, a более простой для Edit-Delete аналог 
-- Для более гибкого программирования
-
-#### Как это работает:
-- Создаем форму привязанную к нашей модели
-- Дополняем контроллер небольшим количеством настроек (см.далее пример)
-- Получем полный цикл создания\редактрования и удаления данных
-- Если нужно просто вывести данные просто их выводим (см.далее пример)
-- Если нужно сохранить\редактировать данные просто сохраняем (см.далее пример)
-
-#### Что работает из коробки:
-- ListView\GridView просто подхватывают $dataProvider и выводят данные для нужной модели
-- ListView\GridView также подхватывают $model для фильтрации\пагинации\сортировки
-- Валидация перед сохранением данных
-- Сохранение новой записи в БД при сабмите заполненной формы
-- Правка\сохранение сохраненной записи в БД
-- Удаление записи (в том числе AJAX)
-- Удобные ограничения на редактирование\создание записей
-
-#### Что нужно знать перед использованием:
-- Экшн "/edit" , просто создаст новю запись в БД
-- Экшн "/edit?id=2" , получит данные из БД. И в случее сохранения их обновит
-- Параметр "returnParams" поставлят к URL дополнительные данне например
-если был экшн "/edit" и параметр установлен, форма перазагрузится на "/edit?id=ID",
-где ID - идентификатор вновь сохранённой модели (или старой). 
-- Параметр "view" можно не задавать, если в папке есть вьюшка с одноименным файлом экшена
-
-#### Что нужно  нужно сделать:
-- Код требует более детальной документации
-- Код не претендует на звание "лучшего", но имеет место быть
-- Нужен рефакторинг, т.к. работает в продакшене многих проектов
-- Покрытие автотестами
-
 
 Installation
 ------------
@@ -94,8 +55,7 @@ Usage example
 ```php
 
 
-//ENG: This is example of controller from some-real project
-//RUS: Экземпляр контроллера из одного проекта
+//This is example of controller from some-real project
 
 class ClientsController extends Controller {
 
@@ -113,7 +73,6 @@ class ClientsController extends Controller {
             ],
 
             //The example is using various configuration
-            //Комбинированное использование настроек
             'edit'=>[
                 'class'=>Edit::className(),
                 'model'=>Users::className(),
@@ -127,7 +86,6 @@ class ClientsController extends Controller {
             ],
 
             //Deleting of user with complex success redirect
-            //Удаление пользователя с необычным редиректом
             'delete'=>[
                 'class'=>Delete::className(),
                 'model'=>Users::className(),
@@ -149,8 +107,7 @@ class ClientsController extends Controller {
 ```
 
 ```php
-//ENG: somewhere in view "list"
-//RUS: пример вьюшки для "list"
+//somewhere in view "list"
 
 <?= GridView::widget([
         'dataProvider'=>$dataProvider,
@@ -158,7 +115,6 @@ class ClientsController extends Controller {
 ]);
 
 //Example of GridView buttons for edit models
-//Пример кнопок редактирования для ГРИДА
 //[
 //    'class'=>ActionColumn::className(),
 //    'header'=>Html::a('Add', ['/manager/clients/edit']),
@@ -178,8 +134,7 @@ class ClientsController extends Controller {
 ```
 
 ```PHP
-//ENG: somewhere in view "edit", $model - passed autamatically
-//RUS: пример вьюшки для "edit", переменная $model - передается автоматически
+//somewhere in view "edit", $model - passed autamatically
 
 <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'lastname')->textInput() ?>
