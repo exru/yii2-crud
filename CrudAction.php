@@ -417,7 +417,7 @@ abstract class CrudAction extends Action {
             if(!$this->editable  || !$this->deleteable){
                 $this->riseException('forbidden');
             }
-            $query = $model::find()->where([$this->queryParam => $this->_id]);
+            $query = $model::find()->andWhere([$this->queryParam => $this->_id]);
 
             $this->setRelationModels($query);
 
@@ -502,7 +502,7 @@ abstract class CrudAction extends Action {
     
     public function setSearchParams($query) {
         if (!empty($this->searchParams)) {
-            $query->where($this->searchParams);
+            $query->andWhere($this->searchParams);
         }
     }
 
