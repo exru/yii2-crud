@@ -401,10 +401,6 @@ abstract class CrudAction extends Action {
         }
 
         if ($this->_model) {
-            $this->_model->attributes = $this->attr;
-            if(is_callable($this->afterFind)){
-                $this->_model = call_user_func($this->afterFind, $this->_model, $this);
-            }
             return $this->_model;
         }
         if (is_null($this->_model)){            
