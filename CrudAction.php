@@ -259,7 +259,7 @@ abstract class CrudAction extends Action {
      * Сообщение если действие запрещено
      * @var string 
      */
-    public $forbiddenMessage = 'Дествие запрещено';
+    public $forbiddenMessage = 'Действие запрещено';
     
     /**
      * Closure after find data
