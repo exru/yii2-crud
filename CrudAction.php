@@ -529,7 +529,7 @@ abstract class CrudAction extends Action {
             throw new ForbiddenHttpException($this->forbiddenMessage, 403);
         }
         $this->controller->redirect($this->routeTo([], true));       
-        Yii::$app->end();
+        exit;
     }
 
     public function run() {
@@ -550,7 +550,7 @@ abstract class CrudAction extends Action {
                 return;
             }
             echo Json::encode(ActiveForm::validate($model));
-            Yii::$app->end();
+            exit;
         }
     }
 
