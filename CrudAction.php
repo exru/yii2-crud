@@ -24,7 +24,6 @@ namespace exru\crud;
 use Exception;
 use Yii;
 use yii\base\Action;
-use yii\base\Object;
 use yii\data\ActiveDataProvider;
 use yii\data\Sort;
 use yii\helpers\ArrayHelper;
